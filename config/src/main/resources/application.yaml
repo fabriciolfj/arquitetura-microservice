@@ -1,0 +1,17 @@
+
+server.port: 8888
+spring:
+  application.name: configuracao
+  profiles.active: native
+  cloud.config.server.native.searchLocations: file:C:\Users\fabri\Documents\repositorios\arquitetura-microservice\config\config-repo
+
+management.endpoint.health.show-details: "ALWAYS"
+management.endpoints.web.exposure.include: "*"
+
+logging:
+  level:
+    root: info
+
+---
+spring.profiles: docker
+spring.cloud.config.server.native.searchLocations: file:/config-repo

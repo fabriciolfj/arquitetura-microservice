@@ -1,9 +1,3 @@
-buildscript {
-	ext {
-		set('mapStructVersion', '1.3.1.Final')
-	}
-}
-
 plugins {
 	id 'org.springframework.boot' version '2.2.7.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -20,13 +14,6 @@ configurations {
 	}
 }
 
-compileJava {
-	options.compilerArgs = [
-			'-parameters',
-			'-Amapstruct.defaultComponentModel=spring'
-	]
-}
-
 repositories {
 	mavenCentral()
 }
@@ -37,25 +24,13 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.apache.kafka:kafka-streams'
-	implementation 'org.springframework.cloud:spring-cloud-stream'
-	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
-	implementation 'org.flywaydb:flyway-core'
-	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.cloud:spring-cloud-config-server'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-
-	implementation("org.mapstruct:mapstruct-jdk8:$mapStructVersion")
-	annotationProcessor("org.mapstruct:mapstruct-processor:$mapStructVersion")
-
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
 }
 
 dependencyManagement {

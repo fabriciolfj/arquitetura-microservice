@@ -23,4 +23,6 @@ public class Produto {
     private BigDecimal preco;
     @Column(name = "codigo", length = 255)
     private String codigo;
+    @Transient
+    private Long quantidade;
 }

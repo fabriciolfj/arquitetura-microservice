@@ -16,5 +16,6 @@ public interface ProdutoMapper {
     @Mapping(source = "descricao", target = "descricao")
     @Mapping(source = "preco", target = "preco")
     @Mapping(source = "codigo", target = "codigo")
+    @Mapping(source = "quantidade", target = "quantidade")
     Produto toModel(final ProdutoDto dto);
 }

@@ -1,4 +1,4 @@
-package br.com.spark.inventario.domain.service.facade.create;
+package br.com.spark.inventario.domain.facade.create;
 
 import br.com.spark.inventario.domain.exceptions.InventarioNegativoException;
 import br.com.spark.inventario.domain.model.Inventario;

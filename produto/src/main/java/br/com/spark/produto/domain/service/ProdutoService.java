@@ -1,6 +1,7 @@
 package br.com.spark.produto.domain.service;
 
 import br.com.spark.produto.domain.exceptions.ProdutoNaoEncontradoException;
+import br.com.spark.produto.domain.facade.fetcher.InventarioFetcher;
 import br.com.spark.produto.domain.model.Produto;
 import br.com.spark.produto.domain.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +18,16 @@ import java.util.UUID;
 public class ProdutoService {
 
     private final ProdutoRepository repository;
+    private final InventarioFetcher inventarioFetcher;
 
     @Transactional(propagation = Propagation.NEVER)
     public Produto buscarPorCodigo(final String codigo) {
         return repository.findByCodigo(codigo)
+                .map(p -> {
+                    var dto = inventarioFetcher.getInventario(codigo);
+                    p.setQuantidade(dto.getQuantidade());
+                    return p;
+                })
                 .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto não encontrado para o codigo: " + codigo));
     }
 

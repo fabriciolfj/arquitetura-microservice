@@ -3,7 +3,7 @@ package br.com.spark.inventario.domain.service;
 import br.com.spark.inventario.domain.exceptions.InventarioNaoLocalizadoException;
 import br.com.spark.inventario.domain.model.Inventario;
 import br.com.spark.inventario.domain.repository.InventarioRepository;
-import br.com.spark.inventario.domain.service.facade.create.InventarioCreate;
+import br.com.spark.inventario.domain.facade.create.InventarioCreate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

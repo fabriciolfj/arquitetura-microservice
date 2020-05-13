@@ -1,7 +1,6 @@
 server:
   port: 9090
 
-
 app:
   eureka-server: localhost
 
@@ -29,6 +28,20 @@ spring:
     username: root
     password: root
 
+feign:
+  hystrix:
+    enabled: enable
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 5000
+        logger-level: FULL
+        loggerLevel: FULL
+
+inventario:
+  url: http://localhost:9091
+
 ---
 spring:
   profiles:
@@ -38,3 +51,6 @@ server:
 
 app:
   eureka-server: eureka
+
+inventario:
+  url: http://inventario/

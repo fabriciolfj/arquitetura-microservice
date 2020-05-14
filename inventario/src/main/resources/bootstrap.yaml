@@ -1,7 +1,7 @@
 app.config-server: localhost
 
 spring:
-  application.name: inventario
+  application.name: inventario-service
   cloud.config:
     failFast: true
     retry:

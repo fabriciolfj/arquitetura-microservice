@@ -1,6 +1,49 @@
+
+#https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/AntPathMatcher.html
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: inventario-service
+          uri: lb://inventario-service
+          predicates:
+            - Path=/inventario/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: myCircuiteBreaker
+                fallbackUri: forward:/inventario-failover
+        - id: inv-failover
+          uri: lb://inv-failover
+          predicates:
+            - Path=/inventario-failover
+
 
 server:
   port: 9098
+
+
+app:
+  eureka-server: localhost
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://${app.eureka-server}:8761/eureka/"
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
+
+---
+spring:
+  profiles:
+    - docker
+server:
+  port: 8080
+
+app:
+  eureka-server: eureka

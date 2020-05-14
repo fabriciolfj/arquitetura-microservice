@@ -39,6 +39,10 @@ feign:
         logger-level: FULL
         loggerLevel: FULL
 
+logging:
+  level:
+    org.springframework: DEBUG
+
 inventario:
   url: http://localhost:9091
 

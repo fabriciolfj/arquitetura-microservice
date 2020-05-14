@@ -1,7 +1,8 @@
+
 app.config-server: localhost
 
 spring:
-  application.name: produto-service
+  application.name: inv-failover
   cloud.config:
     failFast: true
     retry:

@@ -15,10 +15,16 @@ spring:
               args:
                 name: myCircuiteBreaker
                 fallbackUri: forward:/inventario-failover
+
         - id: inv-failover
           uri: lb://inv-failover
           predicates:
             - Path=/inventario-failover
+
+        - id: produto-service
+          uri: lb://produto-service
+          predicates:
+            - Path=/produtos/**
 
 
 server:

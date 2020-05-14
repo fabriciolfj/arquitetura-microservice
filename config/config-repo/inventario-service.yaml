@@ -16,6 +16,42 @@ eureka:
     leaseExpirationDurationInSeconds: 5
 
 spring:
+  kafka:
+    bootstrap-servers: 'localhost:9092'
+    consumer:
+      #auto-offset-reset: earliest
+      group-id: '${spring.application.name}'
+  cloud:
+    stream:
+      binders:
+        kafka:
+          type: kafka
+      bindings:
+        input-produto:
+          group: '${spring.application.name}'
+          binder: kafka
+          destination: topic-produto
+          consumer:
+            maxAttempts: 5
+            partitioned: true
+      kafka:
+        binder:
+          brokers: ${spring.kafka.bootstrap-servers}
+          health-timeout: 30
+          auto-create-topics: true
+          auto-add-partitions: true
+          producer-properties:
+            client.id: inventario-service
+        bindings:
+          input-produto:
+            producer:
+              configuration:
+                acks: 'all'
+                retries: 2147483647
+                max.in.flight.requests.per.connection: 1
+            consumer:
+              configuration:
+                key.deserializer: 'org.apache.kafka.common.serialization.StringDeserializer'
   flyway:
     locations:
       - classpath:db/migration
@@ -28,7 +64,7 @@ spring:
     url: jdbc:mysql://localhost:3306/inventario?createDatabaseIfNotExist=true&serverTimezone=UTC
     username: root
     password: root
-
+# .\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
 ---
 spring:
   profiles:

@@ -1,7 +1,9 @@
 package br.com.spark.produto.domain.service;
 
+import br.com.spark.produto.api.dto.InventarioDto;
 import br.com.spark.produto.domain.exceptions.ProdutoNaoEncontradoException;
 import br.com.spark.produto.domain.facade.fetcher.InventarioFetcher;
+import br.com.spark.produto.domain.mensageria.ProdutoProducer;
 import br.com.spark.produto.domain.model.Produto;
 import br.com.spark.produto.domain.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ public class ProdutoService {
 
     private final ProdutoRepository repository;
     private final InventarioFetcher inventarioFetcher;
+    private final ProdutoProducer produtoProducer;
 
     @Transactional(propagation = Propagation.NEVER)
     public Produto buscarPorCodigo(final String codigo) {
@@ -39,7 +42,19 @@ public class ProdutoService {
     @Transactional(propagation = Propagation.REQUIRED)
     public Produto salvar(final Produto produto) {
         produto.setCodigo(UUID.randomUUID().toString());
-        return repository.save(produto);
+        repository.save(produto);
+        alimentarInventario(produto);
+        return produto;
+    }
+
+    private void alimentarInventario(Produto produto) {
+        InventarioDto dto = InventarioDto.builder()
+                .codigoProduto(produto.getCodigo())
+                .tipo("entrada")
+                .codigoProduto(produto.getCodigo())
+                .quantidade(produto.getQuantidade())
+                .build();
+        produtoProducer.send(dto);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

@@ -5,7 +5,7 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface InventarioSink {
 
-    String INPUT = "topic-produto";
+    String INPUT = "input-produto";
 
     @Input(INPUT)
     SubscribableChannel inventarioInput();

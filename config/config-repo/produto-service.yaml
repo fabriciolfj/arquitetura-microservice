@@ -24,7 +24,7 @@ spring:
         output-produto:
           binder: kafka
           destination: topic-produto
-          group-id: '${spring.application.name}'
+          group: '${spring.application.name}'
           producer:
             partition-count: 16
       kafka:

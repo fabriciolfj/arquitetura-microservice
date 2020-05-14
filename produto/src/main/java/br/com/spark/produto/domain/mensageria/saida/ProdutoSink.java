@@ -5,7 +5,7 @@ import org.springframework.messaging.MessageChannel;
 
 public interface ProdutoSink {
 
-    String OUTPUT = "topic-produto";
+    String OUTPUT = "output-produto";
 
     @Output(OUTPUT)
     MessageChannel produtoOutput();

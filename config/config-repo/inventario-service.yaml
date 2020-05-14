@@ -14,7 +14,6 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 5
     leaseExpirationDurationInSeconds: 5
-
 spring:
   kafka:
     bootstrap-servers: 'localhost:9092'
@@ -65,6 +64,7 @@ spring:
     username: root
     password: root
 # .\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
+#  .\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
 ---
 spring:
   profiles:

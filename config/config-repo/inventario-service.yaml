@@ -51,6 +51,7 @@ spring:
             consumer:
               configuration:
                 key.deserializer: 'org.apache.kafka.common.serialization.StringDeserializer'
+
   flyway:
     locations:
       - classpath:db/migration

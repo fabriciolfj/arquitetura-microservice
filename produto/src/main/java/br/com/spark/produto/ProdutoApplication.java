@@ -3,9 +3,11 @@ package br.com.spark.produto;
 import br.com.spark.produto.domain.mensageria.saida.ProdutoSink;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 
 @EnableBinding(ProdutoSink.class)
+@EnableCircuitBreaker
 @SpringBootApplication
 public class ProdutoApplication {
 

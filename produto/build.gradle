@@ -48,6 +48,7 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix')
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
 
 	implementation("org.mapstruct:mapstruct-jdk8:$mapStructVersion")

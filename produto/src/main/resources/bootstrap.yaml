@@ -11,6 +11,9 @@ spring:
       maxAttempts: 20
     uri: http://${app.config-server}:8888
 
+app:
+  config-server: localhost
+
 ---
 spring.profiles: docker
 

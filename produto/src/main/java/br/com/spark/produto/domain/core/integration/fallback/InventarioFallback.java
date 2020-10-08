@@ -8,7 +8,7 @@ public class InventarioFallback implements InventarioClient {
     @Override
     public InventarioDto getInventario(String id) {
         var dto = new InventarioDto();
-        dto.setQuantidade(999L);
+        dto.setQuantidade(0L);
         return dto;
     }
 }

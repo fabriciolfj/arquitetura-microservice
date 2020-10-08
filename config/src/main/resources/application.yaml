@@ -3,7 +3,7 @@ server.port: 8888
 spring:
   application.name: configuracao
   profiles.active: native
-  cloud.config.server.native.searchLocations: file:C:\Users\fabri\Documents\repositorios\arquitetura-microservice\config\config-repo
+  cloud.config.server.native.searchLocations: file:/home/spark/Documentos/repositorios/arquitetura-microservice/config/config-repo
 
 management.endpoint.health.show-details: "ALWAYS"
 management.endpoints.web.exposure.include: "*"

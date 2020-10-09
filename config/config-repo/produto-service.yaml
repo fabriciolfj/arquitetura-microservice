@@ -58,6 +58,8 @@ feign:
         logger-level: FULL
         loggerLevel: FULL
 
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 210000
+
 logging:
   level:
     org.springframework: DEBUG
